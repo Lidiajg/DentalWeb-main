@@ -1,0 +1,118 @@
+<section class="doctors__body container">
+    <div class="doctors__body-title">
+        <h3 *ngIf="turnsPatient.length>0">Turnos Agendados</h3>
+        <h3 *ngIf="turnsPatient.length==0">No Hay Turnos Agendados</h3>
+    </div>
+    <div class="doctors__body-container">
+        <div class="row norow center" id="style-3">
+            <div class="col-lg-3 col-md-6 col-12" *ngFor="let turnsPatient of turnsPatient">
+                <div class="single-doctor wow fadeInUp" (click)="showTurns(turnsPatient)">
+                    <div class="image">
+                        <img 
+                        [src]="turnsPatient.user.image" 
+                        alt="{{ turnsPatient.user.name + ' ' + turnsPatient.user.lastname }}" 
+                        />
+                    </div>
+                    <div class="content">
+                        <h5>{{ turnsPatient.user.type }}</h5>
+                        <h3>
+                            <a href="">Dr.
+                                {{ turnsPatient.user.name + " " + turnsPatient.user.lastname }}</a>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-container *ngIf="isShowTurns">
+        <section class="service__contact">
+            <h3>Mis Turnos {{userSelected.user.name + ' '+ userSelected.user.lastname}}</h3>
+            <ul>
+                <li *ngFor="let statusMedic of userSelected.statusMedic" class="item-medic">
+                    <div class="data">
+                        <p><i class="fa-solid fa-clock"></i> {{statusMedic.turns}}</p>
+                        <p>Estado: {{statusMedic.status}}</p>
+                        <p *ngIf="statusMedic.message!==''">Mensaje: {{statusMedic.message}}</p>
+                    </div>
+                    <ng-container *ngIf="statusMedic.status!='cancelado' && statusMedic.status!='finalizado'; else space">
+                        <div class="btns-container">
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">
+                            Cancelar Turno
+                        </button>
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal2">
+                            Finalizar Turno
+                        </button>
+                        </div>
+                        
+                    </ng-container>
+                    <ng-template #space>
+                        <div></div>
+                    </ng-template>
+                </li>
+            </ul>
+        </section>
+    </ng-container>
+</section>
+<app-footer></app-footer>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog">
+    <form class="modal-content" id="reportTurn" [formGroup]="reportTurn"
+        (submit)="cancelTurn(userSelected.uid)">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">¿Esta seguro de Cancelar el turno?</h5>
+            <button type="button" class="btn-close" id="closeModalButton" data-bs-dismiss="modal"
+                aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Razon</label>
+                <textarea class="form-control" formControlName="message" id="exampleFormControlTextarea1" rows="3"></textarea>
+              </div>
+              <div class="row">
+                <div class="col text-danger">
+                  <p *ngIf="formNotValid('message')">* El mensaje es obligatorio.</p>
+                </div>
+              </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary"
+                data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Cancelar Turno</button>
+        </div>
+    </form>
+</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2"
+aria-hidden="true">
+<div class="modal-dialog">
+    <form class="modal-content" id="reportTurn" [formGroup]="reportTurn"
+        (submit)="finalizeTurn(userSelected.uid)">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">¿Esta seguro de finalizar el turno?</h5>
+            <button type="button" class="btn-close" id="closeModalButton2" data-bs-dismiss="modal"
+                aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Razon</label>
+                <textarea class="form-control" formControlName="message" id="exampleFormControlTextarea1" rows="3"></textarea>
+              </div>
+              <div class="row">
+                <div class="col text-danger">
+                  <p *ngIf="formNotValid('message')">* El mensaje es obligatorio.</p>
+                </div>
+              </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary"
+                data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Cancelar Turno</button>
+        </div>
+    </form>
+</div>
+</div>

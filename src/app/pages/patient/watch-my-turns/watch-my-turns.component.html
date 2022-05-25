@@ -1,0 +1,55 @@
+<section class="doctors__body container">
+  <div class="doctors__body-title">
+    <h3>Mis Turnos</h3>
+    <h2>Vea sus turnos y realize un seguimiento</h2>
+  </div>
+  <div class="doctors__body-container">
+    <div class="row norow center" id="style-3">
+      <div
+        class="col-lg-3 col-md-6 col-12"
+        *ngFor="let turnsMedic of turnsMedic"
+      >
+        <div class="single-doctor wow fadeInUp" (click)="showTurns(turnsMedic)">
+          <div class="image">
+            <img
+              [src]="turnsMedic.medic.image"
+              alt="{{
+                turnsMedic.medic.name + ' ' + turnsMedic.medic.lastname
+              }}"
+            />
+          </div>
+          <div class="content">
+            <h5>{{ turnsMedic.medic.type }}</h5>
+            <h3>
+              <a href=""
+                >Dr.
+                {{ turnsMedic.medic.name + " " + turnsMedic.medic.lastname }}</a
+              >
+            </h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-container *ngIf="isShowTurns">
+    <section class="service__contact">
+      <h3>Mis Turnos {{medicSelected.medic.name + ' '+ medicSelected.medic.lastname}}</h3>
+      <ul>
+        <li *ngFor="let statusMedic of medicSelected.statusMedic" class="item-medic">
+          <div class="data">
+            <p><i class="fa-solid fa-clock"></i> {{statusMedic.turns}}</p>
+            <p>Estado: {{statusMedic.status}}</p>
+            <p *ngIf="statusMedic.message!==''">Mensaje: {{statusMedic.message}}</p>
+          </div>
+          <ng-container *ngIf="statusMedic.status!='cancelado' && statusMedic.status!='finalizado'; else space">
+            <button type="button" class="btn btn-danger"(click)="cancelTurn(statusMedic.uid)">Cancelar Turno</button>
+          </ng-container>
+          <ng-template #space>
+            <div></div>
+          </ng-template>
+        </li>
+      </ul>
+    </section>
+  </ng-container>
+</section>
+<app-footer></app-footer>

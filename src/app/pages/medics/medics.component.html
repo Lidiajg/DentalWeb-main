@@ -1,0 +1,59 @@
+<section class="breadcrumb-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="inner-content">
+          <div class="title float-left">
+            <h2>Dentistas</h2>
+          </div>
+          <div class="breadcrumb-menu float-right">
+            <ul id="breadcrumbs" class="clearfix">
+              <li class="breadcrumb-item"><a routerLink="/">Inicio&nbsp;</a></li>
+              <li class="breadcrumb-item">Dentistas</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="doctor-content">
+  <div
+    class="single-doctor-item wow fadeInUp animated col "
+    data-wow-delay="300ms"
+    style="
+      visibility: visible;
+      animation-delay: 300ms;
+      animation-name: fadeInUp;
+    "
+    *ngFor="let medic of medics"
+  >
+    <div class="flex">
+      <div>
+        <div class="img-holder">
+          <img
+            width="270"
+            height="270"
+            [src]="medic.image"
+            class="attachment-dento_270x270 size-dento_270x270 wp-post-image"
+            alt="{{medic.name}} {{medic.lastname}}"
+            sizes="(max-width: 270px) 100vw, 270px"
+          />
+        </div>
+      </div>
+      <div class="aling-items">
+        <div class="text-holder">
+          <span>Dentista</span>
+          <h3>Dr. {{medic.name}} {{medic.lastname}}</h3>
+          <ul>
+            <li>{{medic.email}}</li>
+            <li>
+              {{medic.type}}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

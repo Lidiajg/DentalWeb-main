@@ -1,0 +1,36 @@
+<section class="doctors__body container">
+    <div class="doctors__body-title">
+      <h3>Sacar un Turno</h3>
+      <h2>Realiza un turno con nuestros mejores especialistas</h2>
+    </div>
+    <div class="doctors__body-container">
+      <div class="row norow" id="style-3">
+        <div class="col-lg-3 col-md-6 col-12" *ngFor="let medic of medics">
+          <div class="single-doctor wow fadeInUp" (click)="showTimes(medic)">
+            <div class="image">
+              <img [src]="medic.image" alt="{{medic.name + '' + medic.lastname}}">
+            </div>
+            <div class="content">
+              <h5>{{medic.type}}</h5>
+              <h3><a href="">Dr. {{medic.name + '' + medic.lastname}}</a></h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-container *ngIf="isShowTurns">
+        <div data-bs-spy="scroll" data-bs-offset="0" class="scrollspy-example row" tabindex="0">
+          <div class="spinner-bootstrap" *ngIf="isloading">
+            <div class="spinner-grow" role="status" >
+              <span class="visually-hidden">Cargando...</span>
+            </div>
+          </div>
+            <div *ngFor="let item of listaTurnos" class="col">
+                <button class="btn button m-1" (click)="saveTurn(item)" >
+                  {{ item }}
+                </button>
+              </div>
+        </div>
+      </ng-container>
+  </section>
+<app-footer></app-footer>

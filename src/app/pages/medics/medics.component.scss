@@ -1,0 +1,136 @@
+.breadcrumb-area {
+  background-image: url("../../../assets/breadcrumb-bg.jpg");
+  position: relative;
+  background-attachment: scroll;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 75px 0 75px;
+  margin-bottom: 100px;
+  z-index: 1;
+  &::before {
+    background: rgba(139, 196, 66, 0.6);
+    content: "";
+    height: 100%;
+    left: -14%;
+    position: absolute;
+    top: 0;
+    width: 60%;
+    z-index: -1;
+    transform: skew(40deg, 0deg);
+  }
+  .inner-content {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .title {
+    h2 {
+      color: #ffffff;
+      font-size: 30px;
+      line-height: 40px;
+      font-weight: 700;
+      text-transform: capitalize;
+    }
+  }
+  .breadcrumb-menu {
+    ul {
+      position: relative;
+      display: block;
+      overflow: hidden;
+      margin: 10px 0;
+      li {
+        position: relative;
+        display: inline-block;
+        padding-right: 10px;
+        color: #ffffff;
+        font-size: 15px;
+        line-height: 20px;
+        font-weight: 400;
+        text-transform: capitalize;
+        font-family: "Rubik", sans-serif;
+        transition: all 500ms ease;
+        a {
+          color: #ffffff;
+        }
+      }
+    }
+  }
+}
+
+.doctor-content {
+  position: relative;
+  display: block;
+  font-size: 15px;
+  color: #8b8b8b;
+  font-weight: 400;
+  line-height: 24px;
+  font-family: "Rubik", sans-serif;
+  display: flex;
+  flex-wrap: wrap;
+  .single-doctor-item {
+    position: relative;
+    display: block;
+    border-bottom: 1px solid #eeeeee;
+    padding-bottom: 40px;
+    margin-bottom: 40px;
+    .img-holder {
+      position: relative;
+      display: block;
+      overflow: hidden;
+      border-radius: 50%;
+      width: 270px;
+      height: 270px;
+      img {
+        width: 100%;
+        transition: all 0.3s ease-in-out 0.3s;
+        height: 100%;
+        max-width: 100%;
+        border: none;
+        -webkit-border-radius: 0;
+        border-radius: 0;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+      }
+    }
+  }
+}
+.text-holder span {
+  color: #8bc43f;
+  font-size: 16px;
+}
+.flex {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.aling-items {
+  display: flex;
+  align-items: center;
+}
+.fadeInUp {
+  -webkit-animation-name: fadeInUp;
+  animation-name: fadeInUp;
+}
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
